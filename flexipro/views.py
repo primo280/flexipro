@@ -10,5 +10,5 @@ def home (request):
     heros = Hero.objects.all()
    
     
-    return render(request, 'home.html', {'heros': heros})
+    return render(request, 'flexipro/home.html', {'heros': heros})
 
