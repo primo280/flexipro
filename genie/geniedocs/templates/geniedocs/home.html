@@ -1,0 +1,85 @@
+{% extends 'geniedocs/base.html' %}
+{% block content %}
+{% load static %}
+<style>.item {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".category-btn");
+    const items = document.querySelectorAll(".item");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            // Retirer la classe active de tous les boutons
+            buttons.forEach(btn => {
+                btn.classList.remove("bg-blue-500", "text-white");
+                btn.classList.add("bg-gray-200", "text-gray-800");
+            });
+
+            // Ajouter la classe active au bouton cliqué
+            button.classList.remove("bg-gray-200", "text-gray-800");
+            button.classList.add("bg-blue-500", "text-white");
+
+            const category = button.getAttribute("data-category");
+
+            items.forEach(item => {
+                if (category === "all" || item.classList.contains(category)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    });
+});
+
+</script>
+
+<!-- Boutons de catégories -->
+<div class="flex space-x-4 mb-4">
+    <button class="category-btn bg-blue-500 text-white font-semibold py-2 px-4 rounded" data-category="all">Tous</button>
+    {% for categorie in categories %}
+        <button class="category-btn bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded" data-category="categorie{{ categorie.id }}">
+            {{ categorie.nom }}
+        </button>
+    {% endfor %}
+</div>
+
+<!-- Grille des cours -->
+<div id="items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {% for cour in cours %}
+    <div class="item categorie{{ cour.categorie.id }} max-w-sm rounded overflow-hidden shadow-lg m-2">
+        <img src="{{ cour.image.url }}" alt="Image du cours" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h5 class="text-xl font-semibold">{{ cour.titre }}</h5>
+            <p class="text-gray-700 text-base">{{ cour.description|truncatewords:20 }}</p>
+            <a href="#" class="mt-4 inline-block bg-green-900 text-white font-semibold py-2 px-4 rounded hover:bg-green-800">Payer {{ cour.prix }} FCFA</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+<div class="flex flex-wrap">
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg m-2">
+        <img src="..." alt="..." class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h5 class="text-xl font-semibold">Card title</h5>
+            <p class="text-gray-700 text-base">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="mt-4 inline-block bg-green-900 text-white font-semibold py-2 px-4 rounded hover:bg-green-800">Go somewhere</a>
+        </div>
+    </div>
+    <!-- Ajoutez d'autres cartes ici si nécessaire -->
+    
+</div>
+
+{% endblock %}

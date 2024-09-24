@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Projet</title>
+    {% load static %}
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb5g+jD1lT+7IETtDMEZocJfSzKpXw+1IqVQM" crossorigin="anonymous">
+
+<!-- Bootstrap JS (facultatif si nécessaire pour certaines fonctionnalités) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-vwRCK+fj/YbmrNGbo2M/BP5uZwDRGoF2BzmavzJbBfST5f/rcu/xb8KhJHQffLDx" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+   
+
+    <!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>Navbar</title>
+</head>
+
+<body>
+
+    <header class="bg-green-900 p-4">
+        <div class="flex justify-between items-center py-2 px-10 text-white">
+            <img class="cursor-pointer xs-max:w-48 md-max:w-52 lg-xl:w-60" src="{% static 'geniedocs/assets/logo.png' %}" alt="Logo" style="width: 200px; height: 100px;">
+
+            <!-- Menu pour les grands écrans -->
+            <div class="hidden lg:flex items-center gap-2">
+                <a href="/blog" class="font-semibold truncate p-3">Actualités</a>
+                <a href="/marches-publics" class="font-semibold truncate p-3">Marchés publics</a>
+                <a href="/documents" class="font-semibold truncate p-3">Documenthèque</a>
+                <a href="https://www.flickr.com/photos/defense_229" target="_blank" class="font-semibold truncate p-3">Photothèque</a>
+                <a href="https://defense.bj:2096" target="_blank" class="font-semibold truncate p-3">Defmail</a>
+            </div>
+
+            <!-- Menu burger pour les petits écrans -->
+            <button id="menu-toggle" class="block lg:hidden text-white focus:outline-none">
+                <i class="bi bi-border-width text-3xl"></i> <!-- text-3xl pour agrandir l'icône -->
+            </button>
+            
+        </div>
+
+        <!-- Menu dépliable -->
+        <div id="mobile-menu" class="hidden flex-col mt-4 bg-green-500 p-4 rounded-lg transition-transform transform -translate-y-full">
+            <ul class="space-y-2">
+                <li>
+                    <a class="text-white" href="/blog">Actualités</a>
+                </li>
+                <li>
+                    <a class="text-white" href="/marches-publics">Marchés publics</a>
+                </li>
+                <li>
+                    <a class="text-white" href="/documents">Documenthèque</a>
+                </li>
+                <li>
+                    <a class="text-white" href="https://www.flickr.com/photos/defense_229" target="_blank">Photothèque</a>
+                </li>
+                <li>
+                    <a class="text-white" href="https://defense.bj:2096" target="_blank">Defmail</a>
+                </li>
+                <li>
+                    <div class="relative">
+                        <button class="text-white focus:outline-none" id="dropdown-toggle">
+                            Dropdown
+                        </button>
+                        <ul id="dropdown-menu" class="absolute hidden bg-green-600 rounded-lg mt-2 p-2 space-y-1">
+                            <li><a class="text-white" href="#">Action</a></li>
+                            <li><a class="text-white" href="#">Another action</a></li>
+                            <li><hr class="border-white"></li>
+                            <li><a class="text-white" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <form class="mt-4">
+                <input class="p-2 rounded-l-lg border border-white" type="search" placeholder="Search">
+                <button class="bg-green-600 text-white p-2 rounded-r-lg" type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.getElementById("menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const dropdownToggle = document.getElementById("dropdown-toggle");
+            const dropdownMenu = document.getElementById("dropdown-menu");
+
+            // Ouvre et ferme le menu mobile
+            menuToggle.addEventListener("click", function () {
+                mobileMenu.classList.toggle("-translate-y-full");
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            // Ouvre et ferme le menu déroulant
+            dropdownToggle.addEventListener("click", function () {
+                dropdownMenu.classList.toggle("hidden");
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+    
+
+    <main>
+        {% block content %}
+        <!-- Le contenu spécifique à chaque page sera ici -->
+        {% endblock %}
+    </main>
+
+    
+
+    <footer class="bg-green-900 p-4">
+        <div
+            class="grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-20 items-center justify-between py-4 sm:py-6 px-[8%] md:px-30 text-white bg-[#00FF00]">
+            <!-- Couleur verte pur -->
+            <div class="grid md:flex gap-5 items-center">
+
+                <i class="fas fa-envelope" style="font-size: 40px;"></i>
+
+
+                <span class="font-medium lg:text-lg text-center md:text-left">Abonnez-vous à notre newsletter et soyez
+                    les premiers informés de nos actualités</span>
+            </div>
+            <div class="lg:w-full grid md:flex gap-4 h-fit">
+                <div>
+                    <div
+                        class="w-full font-medium rounded bg-[#044000] text-[#F4F6F9] leading-7 h-10 md:h-12 flex flex-nowrap">
+                        <input class="border-0 outline-none appearance-none w-full bg-transparent md-max:text-sm px-4"
+                            type="text" placeholder="Votre adresse email " autocomplete="off" style="border: solid; width: 200px;">
+                    </div>
+                </div>
+                <button type="button"
+                    class="c-text-green bg-white select-none md-max:text-sm border border-transparent h-10 md:h-12 flex gap-2.5 py-3 px-4 items-center justify-center font-semibold rounded w-full md:w-fit"
+                    style="width: 200px;">
+                    <h5 style="color: green;">Souscrire</h5>
+                </button>
+            </div>
+        </div>
+        <div class="grid gap-6 p-6 md:p-10 text-center bg-[#F4FEF3]">
+            <div class="flex gap-6 items-center mx-auto flex-col lg:flex-row">
+                <span class="flex items-center font-bold md-max:text-sm leading-4"> 01 BP 2493 Cotonou </span>
+                <span class="flex items-center gap-2.5 font-medium md-max:text-sm leading-4">
+                    <svg width="20" height="20" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M4.5 4H20.5C21.6 4 22.5 4.9 22.5 6V18C22.5 19.1 21.6 20 20.5 20H4.5C3.4 20 2.5 19.1 2.5 18L2.51 6C2.51 4.9 3.4 4 4.5 4ZM13.03 12.67L20.1 8.25C20.35 8.09 20.5 7.82 20.5 7.53C20.5 6.86 19.77 6.46 19.2 6.81L12.5 11L5.8 6.81C5.23 6.46 4.5 6.86 4.5 7.53C4.5 7.82 4.65 8.09 4.9 8.25L11.97 12.67C12.29 12.87 12.71 12.87 13.03 12.67Z"
+                            fill="#09101D"></path>
+                    </svg> mdn.contact@gouv.bj </span>
+                <span class="flex items-center gap-2.5 font-medium md-max:text-sm leading-4">
+                    <svg width="20" height="20" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19.7217 15.2682L17.1817 14.9782C16.5717 14.9082 15.9717 15.1182 15.5417 15.5482L13.7017 17.3882C10.8717 15.9482 8.55174 13.6382 7.11174 10.7982L8.96174 8.94819C9.39174 8.51819 9.60174 7.91819 9.53174 7.30819L9.24174 4.78819C9.12174 3.77819 8.27174 3.01819 7.25174 3.01819H5.52174C4.39174 3.01819 3.45174 3.95819 3.52174 5.08819C4.05174 13.6282 10.8817 20.4482 19.4117 20.9782C20.5417 21.0482 21.4817 20.1082 21.4817 18.9782V17.2482C21.4917 16.2382 20.7317 15.3882 19.7217 15.2682Z"
+                            fill="#09101D"></path>
+                    </svg> +229 21 30 05 36 </span>
+            </div>
+            <div class="grid gap-4">
+                <span class="font-bold md-max:text-sm leading-4">Réseaux sociaux</span>
+                <div class="flex gap-1.5 justify-center">
+                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M22.54 12.0634C22.54 6.26492 17.8385 1.56335 12.04 1.56335C6.2416 1.56335 1.54004 6.26492 1.54004 12.0634C1.54004 17.304 5.3791 21.6479 10.3994 22.4363V15.0994H7.7327V12.0634H10.3994V9.7496C10.3994 7.11851 11.9674 5.66398 14.3655 5.66398C15.5144 5.66398 16.7163 5.86929 16.7163 5.86929V8.45351H15.3916C14.088 8.45351 13.6802 9.26257 13.6802 10.0941V12.0638H16.5921L16.1271 15.0999H13.6802V22.4373C18.701 21.6493 22.54 17.3054 22.54 12.0634Z"
+                            fill="black"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_582_304)">
+                            <path
+                                d="M23.8425 6.97453C23.8425 4.86516 22.291 3.16828 20.3738 3.16828C17.7769 3.04687 15.1285 3 12.4219 3H11.5782C8.87817 3 6.22504 3.04687 3.62817 3.16875C1.71567 3.16875 0.164103 4.875 0.164103 6.98437C0.0469159 8.65266 -0.00277159 10.3214 4.091e-05 11.9902C-0.00464659 13.6589 0.0484784 15.3292 0.159416 17.0011C0.159416 19.1105 1.71098 20.8214 3.62348 20.8214C6.3516 20.948 9.15004 21.0042 11.9954 20.9995C14.8454 21.0089 17.636 20.9495 20.3672 20.8214C22.2844 20.8214 23.836 19.1105 23.836 17.0011C23.9485 15.3277 24 13.6589 23.9954 11.9855C24.006 10.3167 23.955 8.64641 23.8425 6.97453ZM9.70317 16.5886V7.37766L16.5 11.0615L9.70317 16.5886Z"
+                                fill="#FF6B00"></path>
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_582_304">
+                                <rect width="24" height="24" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
